@@ -44,7 +44,7 @@
     <dependency>
       <groupId>com.microsoft.azure</groupId>
       <artifactId>azure-client-runtime</artifactId>
-      <version>1.0.0-beta2</version>
+      <version>1.0.0-rc-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>commons-codec</groupId>
