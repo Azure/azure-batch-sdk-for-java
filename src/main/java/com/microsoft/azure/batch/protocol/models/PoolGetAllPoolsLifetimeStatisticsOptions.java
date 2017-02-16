@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Pool_GetAllPoolsLifetimeStatistics operation.
+ * Additional parameters for the Pool_getAllPoolsLifetimeStatistics operation.
  */
 public class PoolGetAllPoolsLifetimeStatisticsOptions {
     /**
@@ -113,7 +113,7 @@ public class PoolGetAllPoolsLifetimeStatisticsOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

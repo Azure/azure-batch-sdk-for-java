@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Application_Get operation.
+ * Additional parameters for the Application_get operation.
  */
 public class ApplicationGetOptions {
     /**
@@ -113,7 +113,7 @@ public class ApplicationGetOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

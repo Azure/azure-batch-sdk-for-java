@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Account_ListNodeAgentSkus operation.
+ * Additional parameters for the Account_listNodeAgentSkus operation.
  */
 public class AccountListNodeAgentSkusOptions {
     /**
@@ -23,8 +23,8 @@ public class AccountListNodeAgentSkusOptions {
     private String filter;
 
     /**
-     * The maximum number of items to return in the response. A maximum of
-     * 1000 results will be returned.
+     * The maximum number of items to return in the response. A maximum of 1000
+     * results will be returned.
      */
     @JsonProperty(value = "")
     private Integer maxResults;
@@ -166,7 +166,7 @@ public class AccountListNodeAgentSkusOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

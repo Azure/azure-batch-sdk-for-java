@@ -20,16 +20,17 @@ public class NodeRemoveParameter {
      * A list containing the ids of the compute nodes to be removed from the
      * specified pool.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "nodeList", required = true)
     private List<String> nodeList;
 
     /**
      * The timeout for removal of compute nodes to the pool.
      * The default value is 15 minutes. The minimum value is 5 minutes. If you
-     * specify a value less than 5 minutes, the Batch service returns an
-     * error; if you are calling the REST API directly, the HTTP status code
-     * is 400 (Bad Request).
+     * specify a value less than 5 minutes, the Batch service returns an error;
+     * if you are calling the REST API directly, the HTTP status code is 400
+     * (Bad Request).
      */
+    @JsonProperty(value = "resizeTimeout")
     private Period resizeTimeout;
 
     /**
@@ -38,6 +39,7 @@ public class NodeRemoveParameter {
      * The default value is requeue. Possible values include: 'requeue',
      * 'terminate', 'taskcompletion', 'retaineddata'.
      */
+    @JsonProperty(value = "nodeDeallocationOption")
     private ComputeNodeDeallocationOption nodeDeallocationOption;
 
     /**

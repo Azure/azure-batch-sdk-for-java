@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the ListNext operation.
+ * Additional parameters for the listNext operation.
  */
 public class TaskListNextOptions {
     /**
@@ -86,7 +86,7 @@ public class TaskListNextOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

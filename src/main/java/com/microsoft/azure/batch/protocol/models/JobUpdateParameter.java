@@ -21,12 +21,14 @@ public class JobUpdateParameter {
      * lowest priority and 1000 being the highest priority. If omitted, it is
      * set to the default value 0.
      */
+    @JsonProperty(value = "priority")
     private Integer priority;
 
     /**
      * The execution constraints for the job.
      * If omitted, the constraints are cleared.
      */
+    @JsonProperty(value = "constraints")
     private JobConstraints constraints;
 
     /**
@@ -35,10 +37,9 @@ public class JobUpdateParameter {
      * Update Job call will fail if you include the poolInfo element and the
      * job is not disabled. If you specify an autoPoolSpecification
      * specification in the poolInfo, only the keepAlive property can be
-     * updated, and then only if the auto pool has a poolLifetimeOption of
-     * job.
+     * updated, and then only if the auto pool has a poolLifetimeOption of job.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "poolInfo", required = true)
     private PoolInformation poolInfo;
 
     /**
@@ -46,6 +47,7 @@ public class JobUpdateParameter {
      * If omitted, it takes the default value of an empty list; in effect, any
      * existing metadata is deleted.
      */
+    @JsonProperty(value = "metadata")
     private List<MetadataItem> metadata;
 
     /**
@@ -56,6 +58,7 @@ public class JobUpdateParameter {
      * behavior may not be changed from terminatejob to noaction. Possible
      * values include: 'noAction', 'terminateJob'.
      */
+    @JsonProperty(value = "onAllTasksComplete")
     private OnAllTasksComplete onAllTasksComplete;
 
     /**

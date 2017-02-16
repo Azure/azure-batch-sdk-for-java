@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Task_AddCollection operation.
+ * Additional parameters for the Task_addCollection operation.
  */
 public class TaskAddCollectionOptions {
     /**
@@ -113,7 +113,7 @@ public class TaskAddCollectionOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

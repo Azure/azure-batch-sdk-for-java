@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Job_Add operation.
+ * Additional parameters for the Job_add operation.
  */
 public class JobAddOptions {
     /**
@@ -113,7 +113,7 @@ public class JobAddOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

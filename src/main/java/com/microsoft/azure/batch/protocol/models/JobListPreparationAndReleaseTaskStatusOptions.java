@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Job_ListPreparationAndReleaseTaskStatus
+ * Additional parameters for the Job_listPreparationAndReleaseTaskStatus
  * operation.
  */
 public class JobListPreparationAndReleaseTaskStatusOptions {
@@ -30,8 +30,8 @@ public class JobListPreparationAndReleaseTaskStatusOptions {
     private String select;
 
     /**
-     * The maximum number of items to return in the response. A maximum of
-     * 1000 tasks can be returned.
+     * The maximum number of items to return in the response. A maximum of 1000
+     * tasks can be returned.
      */
     @JsonProperty(value = "")
     private Integer maxResults;
@@ -193,7 +193,7 @@ public class JobListPreparationAndReleaseTaskStatusOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

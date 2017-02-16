@@ -18,17 +18,18 @@ public class PoolResizeParameter {
     /**
      * The desired number of compute nodes in the pool.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "targetDedicated", required = true)
     private int targetDedicated;
 
     /**
      * The timeout for allocation of compute nodes to the pool or removal of
      * compute nodes from the pool.
      * The default value is 15 minutes. The minimum value is 5 minutes. If you
-     * specify a value less than 5 minutes, the Batch service returns an
-     * error; if you are calling the REST API directly, the HTTP status code
-     * is 400 (Bad Request).
+     * specify a value less than 5 minutes, the Batch service returns an error;
+     * if you are calling the REST API directly, the HTTP status code is 400
+     * (Bad Request).
      */
+    @JsonProperty(value = "resizeTimeout")
     private Period resizeTimeout;
 
     /**
@@ -36,6 +37,7 @@ public class PoolResizeParameter {
      * The default value is requeue. Possible values include: 'requeue',
      * 'terminate', 'taskcompletion', 'retaineddata'.
      */
+    @JsonProperty(value = "nodeDeallocationOption")
     private ComputeNodeDeallocationOption nodeDeallocationOption;
 
     /**
