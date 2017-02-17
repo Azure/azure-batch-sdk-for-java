@@ -20,9 +20,10 @@ public class AutoPoolSpecification {
      * automatically created.
      * The Batch service assigns each auto pool a unique identifier on
      * creation. To distinguish between pools created for different purposes,
-     * you can specify this element to add a prefix to the id that is
-     * assigned. The prefix can be up to 20 characters long.
+     * you can specify this element to add a prefix to the id that is assigned.
+     * The prefix can be up to 20 characters long.
      */
+    @JsonProperty(value = "autoPoolIdPrefix")
     private String autoPoolIdPrefix;
 
     /**
@@ -30,27 +31,29 @@ public class AutoPoolSpecification {
      * schedule are assigned to pools.
      * When the pool lifetime scope is jobschedule level, the Batch service
      * keeps track of the last autopool created for the jobschedule, and
-     * deletes that pool when the jobschedule completes. Batch will also
-     * delete this pool if the user updates the auto pool specification in a
-     * way that changes this lifetime. Possible values include:
-     * 'jobschedule', 'job', 'unmapped'.
+     * deletes that pool when the jobschedule completes. Batch will also delete
+     * this pool if the user updates the auto pool specification in a way that
+     * changes this lifetime. Possible values include: 'jobschedule', 'job',
+     * 'unmapped'.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "poolLifetimeOption", required = true)
     private PoolLifetimeOption poolLifetimeOption;
 
     /**
      * Whether to keep an auto pool alive after its lifetime expires.
      * If false, the Batch service deletes the pool once its lifetime (as
-     * determined by the poolLifetimeOption setting) expires; that is, when
-     * the job or job schedule completes. If true, the Batch service does not
-     * delete the pool automatically. It is up to the user to delete auto
-     * pools created with this option.
+     * determined by the poolLifetimeOption setting) expires; that is, when the
+     * job or job schedule completes. If true, the Batch service does not
+     * delete the pool automatically. It is up to the user to delete auto pools
+     * created with this option.
      */
+    @JsonProperty(value = "keepAlive")
     private Boolean keepAlive;
 
     /**
      * The pool specification for the auto pool.
      */
+    @JsonProperty(value = "pool")
     private PoolSpecification pool;
 
     /**

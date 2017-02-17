@@ -22,47 +22,51 @@ public class JobReleaseTask {
      * The ID can contain any combination of alphanumeric characters including
      * hyphens and underscores and cannot contain more than 64 characters. If
      * you do not specify this property, the Batch service assigns a default
-     * value of 'jobrelease'. No other task in the job can have the same id
-     * as the Job Release task. If you try to submit a task with the same id,
-     * the Batch service rejects the request with error code
+     * value of 'jobrelease'. No other task in the job can have the same id as
+     * the Job Release task. If you try to submit a task with the same id, the
+     * Batch service rejects the request with error code
      * TaskIdSameAsJobReleaseTask; if you are calling the REST API directly,
      * the HTTP status code is 409 (Conflict).
      */
+    @JsonProperty(value = "id")
     private String id;
 
     /**
      * The command line of the Job Release task.
      * The command line does not run under a shell, and therefore cannot take
      * advantage of shell features such as environment variable expansion. If
-     * you want to take advantage of such features, you should invoke the
-     * shell in the command line, for example using "cmd /c MyCommand" in
-     * Windows or "/bin/sh -c MyCommand" in Linux.
+     * you want to take advantage of such features, you should invoke the shell
+     * in the command line, for example using "cmd /c MyCommand" in Windows or
+     * "/bin/sh -c MyCommand" in Linux.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "commandLine", required = true)
     private String commandLine;
 
     /**
-     * A list of files that the Batch service will download to the compute
-     * node before running the command line.
+     * A list of files that the Batch service will download to the compute node
+     * before running the command line.
      * Files listed under this element are located in the task's working
      * directory.
      */
+    @JsonProperty(value = "resourceFiles")
     private List<ResourceFile> resourceFiles;
 
     /**
      * A list of environment variable settings for the Job Release task.
      */
+    @JsonProperty(value = "environmentSettings")
     private List<EnvironmentSetting> environmentSettings;
 
     /**
      * The maximum elapsed time that the Job Release task may run on a given
      * compute node, measured from the time the task starts. If the task does
-     * not complete within the time limit, the Batch service terminates it.
-     * The default value is 15 minutes. You may not specify a timeout longer
-     * than 15 minutes. If you do, the Batch service rejects it with an
-     * error; if you are calling the REST API directly, the HTTP status code
-     * is 400 (Bad Request).
+     * not complete within the time limit, the Batch service terminates it. The
+     * default value is 15 minutes. You may not specify a timeout longer than
+     * 15 minutes. If you do, the Batch service rejects it with an error; if
+     * you are calling the REST API directly, the HTTP status code is 400 (Bad
+     * Request).
      */
+    @JsonProperty(value = "maxWallClockTime")
     private Period maxWallClockTime;
 
     /**
@@ -72,12 +76,14 @@ public class JobReleaseTask {
      * The default is infinite, i.e. the task directory will be retained until
      * the compute node is removed or reimaged.
      */
+    @JsonProperty(value = "retentionTime")
     private Period retentionTime;
 
     /**
      * Whether to run the Job Release task in elevated mode.
      * The default value is false.
      */
+    @JsonProperty(value = "runElevated")
     private Boolean runElevated;
 
     /**

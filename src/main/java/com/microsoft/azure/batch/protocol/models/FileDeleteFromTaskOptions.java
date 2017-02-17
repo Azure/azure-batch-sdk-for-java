@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the File_DeleteFromTask operation.
+ * Additional parameters for the File_deleteFromTask operation.
  */
 public class FileDeleteFromTaskOptions {
     /**
@@ -113,7 +113,7 @@ public class FileDeleteFromTaskOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

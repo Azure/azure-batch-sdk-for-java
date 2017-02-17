@@ -25,7 +25,7 @@ public class CreateTasksTerminatedException extends BatchErrorException {
      * @param pendingList The list of {@link TaskAddParameter} instances containing the tasks that were not added, but for which the operation can be retried.
      */
     public CreateTasksTerminatedException(final String message, List<TaskAddResult> failureTasks, List<TaskAddParameter> pendingList) {
-        super(message);
+        super(message, null, null);
         this.failureTasks = failureTasks;
     }
 

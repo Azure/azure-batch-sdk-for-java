@@ -18,11 +18,11 @@ public class TaskAddParameter {
     /**
      * A string that uniquely identifies the task within the job.
      * The ID can contain any combination of alphanumeric characters including
-     * hyphens and underscores, and cannot contain more than 64 characters.
-     * The ID is case-preserving and case-insensitive (that is, you may not
-     * have two IDs within a job that differ only by case).
+     * hyphens and underscores, and cannot contain more than 64 characters. The
+     * ID is case-preserving and case-insensitive (that is, you may not have
+     * two IDs within a job that differ only by case).
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "id", required = true)
     private String id;
 
     /**
@@ -30,6 +30,7 @@ public class TaskAddParameter {
      * The display name need not be unique and can contain any Unicode
      * characters up to a maximum length of 1024.
      */
+    @JsonProperty(value = "displayName")
     private String displayName;
 
     /**
@@ -42,31 +43,35 @@ public class TaskAddParameter {
      * features, you should invoke the shell in the command line, for example
      * using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux.
      */
-    @JsonProperty(required = true)
+    @JsonProperty(value = "commandLine", required = true)
     private String commandLine;
 
     /**
      * How the Batch service should respond when the task completes.
      */
+    @JsonProperty(value = "exitConditions")
     private ExitConditions exitConditions;
 
     /**
-     * A list of files that the Batch service will download to the compute
-     * node before running the command line.
+     * A list of files that the Batch service will download to the compute node
+     * before running the command line.
      * For multi-instance tasks, the resource files will only be downloaded to
      * the compute node on which the primary task is executed.
      */
+    @JsonProperty(value = "resourceFiles")
     private List<ResourceFile> resourceFiles;
 
     /**
      * A list of environment variable settings for the task.
      */
+    @JsonProperty(value = "environmentSettings")
     private List<EnvironmentSetting> environmentSettings;
 
     /**
      * A locality hint that can be used by the Batch service to select a
      * compute node on which to start the new task.
      */
+    @JsonProperty(value = "affinityInfo")
     private AffinityInformation affinityInfo;
 
     /**
@@ -75,35 +80,39 @@ public class TaskAddParameter {
      * maxTaskRetryCount specified for the job, and the maxWallClockTime and
      * retentionTime are infinite.
      */
+    @JsonProperty(value = "constraints")
     private TaskConstraints constraints;
 
     /**
      * Whether to run the task in elevated mode.
      * The default value is false.
      */
+    @JsonProperty(value = "runElevated")
     private Boolean runElevated;
 
     /**
      * An object that indicates that the task is a multi-instance task, and
      * contains information about how to run the multi-instance task.
      */
+    @JsonProperty(value = "multiInstanceSettings")
     private MultiInstanceSettings multiInstanceSettings;
 
     /**
      * The tasks that this task depends on.
      * The task will not be scheduled until all depended-on tasks have
-     * completed successfully. (If any depended-on tasks fail and exhaust
-     * their retry counts, the task will never be scheduled.) If the job does
-     * not have usesTaskDependencies set to true, and this element is
-     * present, the request fails with error code
-     * TaskDependenciesNotSpecifiedOnJob.
+     * completed successfully. (If any depended-on tasks fail and exhaust their
+     * retry counts, the task will never be scheduled.) If the job does not
+     * have usesTaskDependencies set to true, and this element is present, the
+     * request fails with error code TaskDependenciesNotSpecifiedOnJob.
      */
+    @JsonProperty(value = "dependsOn")
     private TaskDependencies dependsOn;
 
     /**
-     * A list of application packages that the Batch service will deploy to
-     * the compute node before running the command line.
+     * A list of application packages that the Batch service will deploy to the
+     * compute node before running the command line.
      */
+    @JsonProperty(value = "applicationPackageReferences")
     private List<ApplicationPackageReference> applicationPackageReferences;
 
     /**

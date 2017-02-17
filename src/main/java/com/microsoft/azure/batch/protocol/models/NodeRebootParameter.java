@@ -8,6 +8,7 @@
 
 package com.microsoft.azure.batch.protocol.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Options for rebooting a compute node.
@@ -19,6 +20,7 @@ public class NodeRebootParameter {
      * The default value is requeue. Possible values include: 'requeue',
      * 'terminate', 'taskcompletion', 'retaineddata'.
      */
+    @JsonProperty(value = "nodeRebootOption")
     private ComputeNodeRebootOption nodeRebootOption;
 
     /**

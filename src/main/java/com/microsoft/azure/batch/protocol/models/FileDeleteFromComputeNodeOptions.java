@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the File_DeleteFromComputeNode operation.
+ * Additional parameters for the File_deleteFromComputeNode operation.
  */
 public class FileDeleteFromComputeNodeOptions {
     /**
@@ -113,7 +113,7 @@ public class FileDeleteFromComputeNodeOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

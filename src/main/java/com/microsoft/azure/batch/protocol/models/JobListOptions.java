@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the Job_List operation.
+ * Additional parameters for the Job_list operation.
  */
 public class JobListOptions {
     /**
@@ -35,8 +35,8 @@ public class JobListOptions {
     private String expand;
 
     /**
-     * The maximum number of items to return in the response. A maximum of
-     * 1000 jobs can be returned.
+     * The maximum number of items to return in the response. A maximum of 1000
+     * jobs can be returned.
      */
     @JsonProperty(value = "")
     private Integer maxResults;
@@ -218,7 +218,7 @@ public class JobListOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

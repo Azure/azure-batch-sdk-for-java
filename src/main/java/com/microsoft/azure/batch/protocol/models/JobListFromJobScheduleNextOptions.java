@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the ListFromJobScheduleNext operation.
+ * Additional parameters for the listFromJobScheduleNext operation.
  */
 public class JobListFromJobScheduleNextOptions {
     /**
@@ -86,7 +86,7 @@ public class JobListFromJobScheduleNextOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

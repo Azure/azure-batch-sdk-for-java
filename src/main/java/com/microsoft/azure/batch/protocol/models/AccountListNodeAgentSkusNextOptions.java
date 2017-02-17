@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the ListNodeAgentSkusNext operation.
+ * Additional parameters for the listNodeAgentSkusNext operation.
  */
 public class AccountListNodeAgentSkusNextOptions {
     /**
@@ -86,7 +86,7 @@ public class AccountListNodeAgentSkusNextOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**

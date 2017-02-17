@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the JobSchedule_Disable operation.
+ * Additional parameters for the JobSchedule_disable operation.
  */
 public class JobScheduleDisableOptions {
     /**
@@ -141,7 +141,7 @@ public class JobScheduleDisableOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**
@@ -208,7 +208,7 @@ public class JobScheduleDisableOptions {
         if (this.ifModifiedSince == null) {
             return null;
         }
-        return this.ifModifiedSince.getDateTime();
+        return this.ifModifiedSince.dateTime();
     }
 
     /**
@@ -235,7 +235,7 @@ public class JobScheduleDisableOptions {
         if (this.ifUnmodifiedSince == null) {
             return null;
         }
-        return this.ifUnmodifiedSince.getDateTime();
+        return this.ifUnmodifiedSince.dateTime();
     }
 
     /**

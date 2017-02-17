@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Additional parameters for the File_ListFromComputeNode operation.
+ * Additional parameters for the File_listFromComputeNode operation.
  */
 public class FileListFromComputeNodeOptions {
     /**
@@ -23,8 +23,8 @@ public class FileListFromComputeNodeOptions {
     private String filter;
 
     /**
-     * The maximum number of items to return in the response. A maximum of
-     * 1000 files can be returned.
+     * The maximum number of items to return in the response. A maximum of 1000
+     * files can be returned.
      */
     @JsonProperty(value = "")
     private Integer maxResults;
@@ -166,7 +166,7 @@ public class FileListFromComputeNodeOptions {
         if (this.ocpDate == null) {
             return null;
         }
-        return this.ocpDate.getDateTime();
+        return this.ocpDate.dateTime();
     }
 
     /**
