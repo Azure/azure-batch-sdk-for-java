@@ -21,6 +21,7 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class PoolTests extends BatchTestBase {
     static CloudPool livePool;
@@ -69,7 +70,7 @@ public class PoolTests extends BatchTestBase {
         String POOL_OS_VERSION = "*";
 
         // 5 minutes
-        long POOL_STEADY_TIMEOUT = 5 * 60 * 60;
+        long POOL_STEADY_TIMEOUT = TimeUnit.MINUTES.toMillis(5);
 
         // Check if pool exists
         if (!batchClient.poolOperations().existsPool(poolId)) {

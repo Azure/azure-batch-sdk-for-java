@@ -6,12 +6,14 @@
 
 package com.microsoft.azure.batch;
 
-import okhttp3.logging.HttpLoggingInterceptor;
-import com.microsoft.azure.batch.BatchClient;
 import com.microsoft.azure.batch.auth.BatchSharedKeyCredentials;
-import com.microsoft.azure.batch.protocol.models.*;
-import java.util.*;
+import com.microsoft.azure.batch.protocol.models.AllocationState;
+import com.microsoft.azure.batch.protocol.models.CloudPool;
+import com.microsoft.azure.batch.protocol.models.CloudServiceConfiguration;
 import org.junit.Assert;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The base for batch dataplane tests.
@@ -35,7 +37,7 @@ public abstract class BatchTestBase {
         String POOL_OS_VERSION = "*";
 
         // 5 minutes
-        long POOL_STEADY_TIMEOUT = 5 * 60 * 60;
+        long POOL_STEADY_TIMEOUT = TimeUnit.MINUTES.toMillis(5);
 
         // Check if pool exists
         if (!batchClient.poolOperations().existsPool(poolId)) {
