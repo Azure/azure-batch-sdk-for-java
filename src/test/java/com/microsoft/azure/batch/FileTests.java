@@ -18,13 +18,12 @@ import rx.functions.Func1;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 public class FileTests extends BatchTestBase {
-    static CloudPool livePool;
+    private static CloudPool livePool;
 
     @BeforeClass
     public static void setup() throws Exception {
@@ -49,7 +48,7 @@ public class FileTests extends BatchTestBase {
         // CREATE
         String jobId = getStringWithUserNamePrefix("-Job-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
         String taskId = "mytask";
-        Duration TASK_COMPLETE_TIMEOUT = Duration.ofMinutes(1);
+        int TASK_COMPLETE_TIMEOUT = 60; // 60 seconds timeout
 
         try {
 
@@ -89,7 +88,7 @@ public class FileTests extends BatchTestBase {
                         }
                     }
                 }).toBlocking().single();
-                Assert.assertEquals(fileContent, "hello\r\n");
+                Assert.assertEquals(output, "hello\r\n");
 
                 FileProperties properties = batchClient.fileOperations().getFilePropertiesFromTask(jobId, taskId, "stdout.txt");
                 Assert.assertEquals(7, properties.contentLength());
@@ -112,7 +111,7 @@ public class FileTests extends BatchTestBase {
         // CREATE
         String jobId = getStringWithUserNamePrefix("-Job-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
         String taskId = "mytask";
-        Duration TASK_COMPLETE_TIMEOUT = Duration.ofMinutes(1);
+        int TASK_COMPLETE_TIMEOUT = 60; // 60 seconds timeout
 
         try {
             PoolInformation poolInfo = new PoolInformation();
@@ -155,7 +154,7 @@ public class FileTests extends BatchTestBase {
                         }
                     }
                 }).toBlocking().single();
-                Assert.assertEquals(fileContent, "hello\r\n");
+                Assert.assertEquals(output, "hello\r\n");
 
                 FileProperties properties = batchClient.fileOperations().getFilePropertiesFromComputeNode(livePool.id(), nodeId, fileName);
                 Assert.assertEquals(7, properties.contentLength());
