@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import rx.exceptions.Exceptions;
 import rx.functions.Func1;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -72,8 +73,9 @@ public class FileTests extends BatchTestBase {
                 }
                 Assert.assertTrue(found);
 
-                InputStream stream = batchClient.fileOperations().getFileFromTask(jobId, taskId, "stdout.txt");
-                String fileContent = IOUtils.toString(stream, "UTF-8");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                batchClient.fileOperations().getFileFromTask(jobId, taskId, "stdout.txt", stream);
+                String fileContent = stream.toString("UTF-8");
                 Assert.assertEquals(fileContent, "hello\r\n");
                 stream.close();
 
@@ -137,8 +139,9 @@ public class FileTests extends BatchTestBase {
                 Assert.assertNotNull(fileName);
 
 
-                InputStream stream = batchClient.fileOperations().getFileFromComputeNode(livePool.id(), nodeId, fileName);
-                String fileContent = IOUtils.toString(stream, "UTF-8");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                batchClient.fileOperations().getFileFromComputeNode(livePool.id(), nodeId, fileName, stream);
+                String fileContent = stream.toString("UTF-8");
                 Assert.assertEquals(fileContent, "hello\r\n");
                 stream.close();
 

@@ -114,6 +114,13 @@ public class TaskTests  extends BatchTestBase {
             Assert.assertNotNull(task);
             Assert.assertEquals(task.id(), taskId);
 
+            // UPDATE
+            TaskConstraints contraint = new TaskConstraints();
+            contraint.withMaxTaskRetryCount(5);
+            batchClient.taskOperations().updateTask(jobId, taskId, contraint);
+            task = batchClient.taskOperations().getTask(jobId, taskId);
+            Assert.assertEquals(task.constraints().maxTaskRetryCount(), (Integer)5);
+
             // LIST
             List<CloudTask> tasks = batchClient.taskOperations().listTasks(jobId);
             Assert.assertNotNull(tasks);
@@ -129,21 +136,13 @@ public class TaskTests  extends BatchTestBase {
 
             Assert.assertTrue(found);
 
-
-            // UPDATE
-            TaskConstraints contraint = new TaskConstraints();
-            contraint.withMaxTaskRetryCount(5);
-            batchClient.taskOperations().updateTask(jobId, taskId, contraint);
-            task = batchClient.taskOperations().getTask(jobId, taskId);
-            Assert.assertEquals(task.constraints().maxTaskRetryCount(), (Integer)5);
-
             if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT)) {
                 // Get the task command output file
                 task = batchClient.taskOperations().getTask(jobId, taskId);
 
-                InputStream stream = batchClient.fileOperations().getFileFromTask(jobId, taskId, STANDARD_CONSOLE_OUTPUT_FILENAME);
-                Scanner s = new Scanner(stream, "UTF-8").useDelimiter("\\A");
-                String fileContent = s.hasNext() ? s.next() : "";
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                batchClient.fileOperations().getFileFromTask(jobId, taskId, STANDARD_CONSOLE_OUTPUT_FILENAME, stream);
+                String fileContent = stream.toString("UTF-8");
                 Assert.assertEquals(fileContent, "This is an example");
             }
 
