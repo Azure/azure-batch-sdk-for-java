@@ -79,7 +79,7 @@ abstract class BatchTestBase {
             userList.add(new UserAccount().withName("test-user").withPassword("kt#_gahr!@aGERDXA").withElevationLevel(ElevationLevel.ADMIN));
             PoolAddParameter addParameter = new PoolAddParameter()
                     .withId(poolId)
-                    .withTargetDedicated(POOL_VM_COUNT)
+                    .withTargetDedicatedNodes(POOL_VM_COUNT)
                     .withVmSize(POOL_VM_SIZE)
                     .withCloudServiceConfiguration(configuration)
                     .withUserAccounts(userList);
