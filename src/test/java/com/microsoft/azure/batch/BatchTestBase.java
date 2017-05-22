@@ -67,7 +67,7 @@ abstract class BatchTestBase {
         String POOL_OS_VERSION = "*";
 
         // 5 minutes
-        long POOL_STEADY_TIMEOUT = 5 * 60 * 1000;
+        long POOL_STEADY_TIMEOUT_IN_SECONDS = 5 * 60 * 1000;
 
         // Check if pool exists
         if (!batchClient.poolOperations().existsPool(poolId)) {
@@ -92,7 +92,7 @@ abstract class BatchTestBase {
         CloudPool pool;
 
         // Wait for the VM to be allocated
-        while (elapsedTime < POOL_STEADY_TIMEOUT) {
+        while (elapsedTime < POOL_STEADY_TIMEOUT_IN_SECONDS) {
             pool = batchClient.poolOperations().getPool(poolId);
             if (pool.allocationState() == AllocationState.STEADY) {
                 steady = true;
@@ -114,7 +114,7 @@ abstract class BatchTestBase {
         int POOL_VM_COUNT = 1;
 
         // 5 minutes
-        long POOL_STEADY_TIMEOUT = 5 * 60 * 1000;
+        long POOL_STEADY_TIMEOUT_IN_SECONDS = 5 * 60 * 1000;
 
         // Check if pool exists
         if (!batchClient.poolOperations().existsPool(poolId)) {
@@ -124,11 +124,12 @@ abstract class BatchTestBase {
             configuration.withNodeAgentSKUId("batch.node.ubuntu 16.04").withImageReference(imgRef);
 
             List<UserAccount> userList = new ArrayList<>();
-            userList.add(new UserAccount().
-                        withName("test-user").
-                        withPassword("kt#_gahr!@aGERDXA").
-                        withLinuxUserConfiguration(new LinuxUserConfiguration().
-                            withUid(5).withGid(5))
+            userList.add(new UserAccount()
+                    .withName("test-user")
+                    .withPassword("kt#_gahr!@aGERDXA")
+                    .withLinuxUserConfiguration(new LinuxUserConfiguration()
+                            .withUid(5)
+                            .withGid(5))
                         .withElevationLevel(ElevationLevel.ADMIN));
             PoolAddParameter addParameter = new PoolAddParameter()
                     .withId(poolId)
@@ -145,7 +146,7 @@ abstract class BatchTestBase {
         CloudPool pool;
 
         // Wait for the VM to be allocated
-        while (elapsedTime < POOL_STEADY_TIMEOUT) {
+        while (elapsedTime < POOL_STEADY_TIMEOUT_IN_SECONDS) {
             pool = batchClient.poolOperations().getPool(poolId);
             if (pool.allocationState() == AllocationState.STEADY) {
                 steady = true;

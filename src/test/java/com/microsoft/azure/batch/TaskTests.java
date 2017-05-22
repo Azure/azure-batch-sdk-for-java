@@ -42,7 +42,7 @@ public class TaskTests  extends BatchTestBase {
 
     @Test
     public void canCRUDTest() throws Exception {
-        int TASK_COMPLETE_TIMEOUT = 60; // 60 seconds timeout
+        int TASK_COMPLETE_TIMEOUT_IN_SECONDS = 60; // 60 seconds timeout
         String STANDARD_CONSOLE_OUTPUT_FILENAME = "stdout.txt";
         String BLOB_FILE_NAME = "test.txt";
         String taskId = "mytask";
@@ -105,7 +105,7 @@ public class TaskTests  extends BatchTestBase {
 
             Assert.assertTrue(found);
 
-            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT)) {
+            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT_IN_SECONDS)) {
                 // Get the task command output file
                 task = batchClient.taskOperations().getTask(jobId, taskId);
 
@@ -174,8 +174,8 @@ public class TaskTests  extends BatchTestBase {
     }
 
     @Test
-    public void testOutput() throws Exception {
-        int TASK_COMPLETE_TIMEOUT = 60; // 60 seconds timeout
+    public void testOutputFiles() throws Exception {
+        int TASK_COMPLETE_TIMEOUT_IN_SECONDS = 60; // 60 seconds timeout
         String jobId = getStringWithUserNamePrefix("-Job-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
         String taskId = "mytask";
         String badTaskId = "mytask1";
@@ -191,20 +191,22 @@ public class TaskTests  extends BatchTestBase {
         try {
             // CREATE
             List<OutputFile> outputs = new ArrayList<>();
-            outputs.add(new OutputFile().
-                    withFilePattern("../stdout.txt").
-                    withDestination(new OutputFileDestination().
-                            withContainer(new OutputFileBlobContainerDestination().
-                                    withContainerUrl(containerUrl).
-                                    withPath("taskLogs/output.txt"))).
-                    withUploadOptions(new OutputFileUploadOptions().withUploadCondition(OutputFileUploadCondition.TASK_COMPLETION)));
-            outputs.add(new OutputFile().
-                    withFilePattern("../stderr.txt").
-                    withDestination(new OutputFileDestination().
-                            withContainer(new OutputFileBlobContainerDestination().
-                                    withContainerUrl(containerUrl).
-                                    withPath("taskLogs/err.txt"))).
-                    withUploadOptions(new OutputFileUploadOptions().withUploadCondition(OutputFileUploadCondition.TASK_FAILURE)));
+            outputs.add(new OutputFile()
+                    .withFilePattern("../stdout.txt")
+                    .withDestination(new OutputFileDestination()
+                            .withContainer(new OutputFileBlobContainerDestination()
+                                    .withContainerUrl(containerUrl)
+                                    .withPath("taskLogs/output.txt")))
+                    .withUploadOptions(new OutputFileUploadOptions()
+                            .withUploadCondition(OutputFileUploadCondition.TASK_COMPLETION)));
+            outputs.add(new OutputFile()
+                    .withFilePattern("../stderr.txt")
+                    .withDestination(new OutputFileDestination()
+                            .withContainer(new OutputFileBlobContainerDestination()
+                                    .withContainerUrl(containerUrl)
+                                    .withPath("taskLogs/err.txt")))
+                    .withUploadOptions(new OutputFileUploadOptions()
+                            .withUploadCondition(OutputFileUploadCondition.TASK_FAILURE)));
             TaskAddParameter taskToAdd = new TaskAddParameter();
             taskToAdd.withId(taskId)
                     .withCommandLine("bash -c \"echo hello\"")
@@ -212,7 +214,7 @@ public class TaskTests  extends BatchTestBase {
 
             batchClient.taskOperations().createTask(jobId, taskToAdd);
 
-            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT)) {
+            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT_IN_SECONDS)) {
                 CloudTask task = batchClient.taskOperations().getTask(jobId, taskId);
                 Assert.assertNotNull(task);
                 Assert.assertEquals(task.executionInfo().result(), TaskExecutionResult.SUCCESS);
@@ -230,7 +232,7 @@ public class TaskTests  extends BatchTestBase {
 
             batchClient.taskOperations().createTask(jobId, taskToAdd);
 
-            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT)) {
+            if (waitForTasksToComplete(batchClient, jobId, TASK_COMPLETE_TIMEOUT_IN_SECONDS)) {
                 CloudTask task = batchClient.taskOperations().getTask(jobId, badTaskId);
                 Assert.assertNotNull(task);
                 Assert.assertEquals(task.executionInfo().result(), TaskExecutionResult.FAILURE);
