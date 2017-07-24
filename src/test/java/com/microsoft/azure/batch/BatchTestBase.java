@@ -162,60 +162,6 @@ abstract class BatchTestBase {
         return batchClient.poolOperations().getPool(poolId);
     }
 
-    static CloudPool createIfNotExistIaaSPool(String poolId) throws Exception {
-        // Create a pool with 3 Small VMs
-        String POOL_VM_SIZE = "STANDARD_A1";
-        int POOL_VM_COUNT = 1;
-
-        // 5 minutes
-        long POOL_STEADY_TIMEOUT_IN_SECONDS = 5 * 60 * 1000;
-
-        // Check if pool exists
-        if (!batchClient.poolOperations().existsPool(poolId)) {
-            // Use IaaS VM with Ubuntu
-            ImageReference imgRef = new ImageReference().withPublisher("Canonical").withOffer("UbuntuServer").withSku("16.04-LTS").withVersion("latest");
-            VirtualMachineConfiguration configuration = new VirtualMachineConfiguration();
-            configuration.withNodeAgentSKUId("batch.node.ubuntu 16.04").withImageReference(imgRef);
-
-            List<UserAccount> userList = new ArrayList<>();
-            userList.add(new UserAccount()
-                    .withName("test-user")
-                    .withPassword("kt#_gahr!@aGERDXA")
-                    .withLinuxUserConfiguration(new LinuxUserConfiguration()
-                            .withUid(5)
-                            .withGid(5))
-                        .withElevationLevel(ElevationLevel.ADMIN));
-            PoolAddParameter addParameter = new PoolAddParameter()
-                    .withId(poolId)
-                    .withTargetDedicatedNodes(POOL_VM_COUNT)
-                    .withVmSize(POOL_VM_SIZE)
-                    .withVirtualMachineConfiguration(configuration)
-                    .withUserAccounts(userList);
-            batchClient.poolOperations().createPool(addParameter);
-        }
-
-        long startTime = System.currentTimeMillis();
-        long elapsedTime = 0L;
-        boolean steady = false;
-        CloudPool pool;
-
-        // Wait for the VM to be allocated
-        while (elapsedTime < POOL_STEADY_TIMEOUT_IN_SECONDS) {
-            pool = batchClient.poolOperations().getPool(poolId);
-            if (pool.allocationState() == AllocationState.STEADY) {
-                steady = true;
-                break;
-            }
-            System.out.println("wait 30 seconds for pool steady...");
-            Thread.sleep(30 * 1000);
-            elapsedTime = (new Date()).getTime() - startTime;
-        }
-
-        Assert.assertTrue("The pool did not reach a steady state in the allotted time", steady);
-
-        return batchClient.poolOperations().getPool(poolId);
-    }
-
     static String getStringWithUserNamePrefix(String name) {
         String userName = System.getProperty("user.name");
         return userName + name;

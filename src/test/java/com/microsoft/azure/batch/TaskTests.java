@@ -176,7 +176,7 @@ public class TaskTests  extends BatchTestBase {
     @Test
     public void testOutputFiles() throws Exception {
         int TASK_COMPLETE_TIMEOUT_IN_SECONDS = 60; // 60 seconds timeout
-        String jobId = getStringWithUserNamePrefix("-Job-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
+        String jobId = getStringWithUserNamePrefix("-Job1-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
         String taskId = "mytask";
         String badTaskId = "mytask1";
         String storageAccountName = System.getenv("STORAGE_ACCOUNT_NAME");
@@ -282,7 +282,12 @@ public class TaskTests  extends BatchTestBase {
             // LIST
             List<CloudTask> tasks = batchClient.taskOperations().listTasks(jobId);
             Assert.assertNotNull(tasks);
-            Assert.assertTrue(tasks.size() == 1000);
+            Assert.assertTrue(tasks.size() == TASK_COUNT);
+
+            // Test Job count
+            TaskCounts counts = batchClient.jobOperations().getTaskCounts(jobId);
+            int all = counts.active() + counts.completed() + counts.running();
+            Assert.assertEquals(all, TASK_COUNT);
         } finally {
             try {
                 batchClient.jobOperations().deleteJob(jobId);
