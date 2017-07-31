@@ -67,8 +67,6 @@ public class PoolTests extends BatchTestBase {
             ImageReference imgRef = new ImageReference().withPublisher("Canonical").withOffer("UbuntuServer").withSku("16.04-LTS").withVersion("latest");
             VirtualMachineConfiguration configuration = new VirtualMachineConfiguration();
             configuration.withNodeAgentSKUId("batch.node.ubuntu 16.04").withImageReference(imgRef);
-            List<String> licenses = new ArrayList<>();
-            licenses.add("maya");
 
             NetworkConfiguration netConfig = new NetworkConfiguration();
             PoolEndpointConfiguration endpointConfig = new PoolEndpointConfiguration();
@@ -89,7 +87,6 @@ public class PoolTests extends BatchTestBase {
                     .withVmSize(POOL_VM_SIZE)
                     .withVirtualMachineConfiguration(configuration)
                     .withNetworkConfiguration(netConfig);
-                    //.withApplicationLicenses(licenses);
             batchClient.poolOperations().createPool(addParameter);
         }
 
