@@ -1,5 +1,15 @@
 # Azure Batch SDK for Java release notes
 
+## Changes in 4.0.0
+### Features
+ - Added the ability to query pool node counts by state, via the new `listPoolNodeCounts` method on `PoolOperations`.
+ - Added the ability to upload Azure Batch node agent logs from a particular node, via the `uploadComputeNodeBatchServiceLogs` method on `ComputeNodeOperations`.
+   - This is intended for use in debugging by Microsoft support when there are problems on a node.
+
+### REST API version
+This version of the Batch Java client library targets version 2018-03-01.6.1 of the Azure Batch REST API. See this [document](https://docs.microsoft.com/en-us/rest/api/batchservice/batch-service-rest-api-versioning#latest-version-2018-03-0161) for detail.
+
+
 ## Changes in 3.0.0
 ### Features
 - Added the ability to get a discount on Windows VM pricing if you have on-premises licenses for the OS SKUs you are deploying, via `licenseType` on `VirtualMachineConfiguration`.
