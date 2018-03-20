@@ -6,15 +6,21 @@
 
 package com.microsoft.azure.batch;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
-	protected int _currentIndex;
+	protected Integer _currentIndex;
 	private final PagedIteratorBase<T> _implInstance;
-	protected Object[] _currentBatch;
-	private SkipTokenHandler _skipHandler;
+	protected List<Object> _currentBatch;
+	protected SkipTokenHandler _skipHandler;
+	private final ExecutorService executor = Executors.newCachedThreadPool();
 
 	PagedIteratorBase() {
 		_implInstance = this;
@@ -25,12 +31,12 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 	@Override
 	public abstract T current();
 
-	protected abstract CompletableFuture<T> getNextBatchFromServerAsync(SkipTokenHandler skipHandler);
+	protected abstract Future<Boolean> getNextBatchFromServerAsync(SkipTokenHandler skipHandler);
 
 	// Iterator
 	@Override
 	public boolean hasNext() {
-		CompletableFuture<Boolean> asyncTask = hasNextAsync();
+		Future<Boolean> asyncTask = hasNextAsync();
 
 		try {
 			return asyncTask.get();
@@ -42,30 +48,15 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 
 	// IPagedIterator
 	@Override
-	public CompletableFuture<Boolean> hasNextAsync() {
-		return CompletableFuture.supplyAsync(this::_hasNextTask);
-	}
-
-	/**
-	 * Task to asynchronously check if there is any more data to iterate over
-	 * 
-	 * @return true if there is otherwise false
-	 */
-	private boolean _hasNextTask() {
-		if ((_currentBatch != null) && _currentIndex + 1 < _currentBatch.length) {
-			return true;
-		}
-		if (_skipHandler.getAtLeastOneCallMade() && !_skipHandler.isMoreData()) {
-			return false;
-		}
-		return true;
-
+	public Future<Boolean> hasNextAsync() {
+		Future<Boolean> futureTask = (Future<Boolean>) executor.submit(new _hasNextTask<T>(_implInstance));
+		return futureTask;
 	}
 
 	// Iterator
 	@Override
 	public T next() throws NoSuchElementException {
-		CompletableFuture<Boolean> asyncTask = moveNextAsync();
+		Future<Boolean> asyncTask = moveNextAsync();
 
 		try {
 			if (asyncTask.get()) {
@@ -81,56 +72,22 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 
 	// IPagedIterator
 	@Override
-	public CompletableFuture<Boolean> moveNextAsync() {
-		return CompletableFuture.supplyAsync(this::_moveNextTask);
+	public Future<Boolean> moveNextAsync() {
+		Future<Boolean> futureTask = executor.submit(new _moveNextTask<T>(_implInstance));
+		return futureTask;
 	}
 
-	/**
-	 * Task to asynchronously move the iterator to the next item in the collection
-	 * 
-	 * @return true on iterator successfully moving, false if out of data
-	 * @throws ExecutionException 
-	 * @throws InterruptedException 
-	 */
-	private boolean _moveNextTask() {
-		// move iterator
-		_currentIndex++;
 
-		// If we have enough data return true
-		if ((_currentBatch != null) && (_currentIndex < _currentBatch.length)) {
-			return true;
-		}
-
-		if (_skipHandler.getAtLeastOneCallMade() && !_skipHandler.isMoreData()) {
-			return false;
-		}
-
-		CompletableFuture<T> asyncGetData = getNextBatchFromServerAsync(_skipHandler);
-		try {
-			asyncGetData.get();
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-			return false;
-		} 
-
-		if ((_currentBatch != null) && (_currentBatch.length > 0)) {
-			_currentIndex = 0;
-			return true;
-		}
-
-		return false;
-	}
 
 	/**
 	 * Synchronously reset the iterator. Initial state places the iterator prior to
 	 * the the first item in the collection and refreshes the batch
 	 */
 	public void reset() {
-		CompletableFuture<Boolean> asyncTask = resetAsync();
+		Future<Boolean> asyncTask = resetAsync();
 		try {
 			asyncTask.get();
 		} catch (InterruptedException | ExecutionException e) {
-			// TODO Better Exception Handling
 			e.printStackTrace();
 		}
 
@@ -138,24 +95,104 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 
 	// IPagedIterator
 	@Override
-	public CompletableFuture<Boolean> resetAsync() {
-		return CompletableFuture.supplyAsync(this::_resetTask);
+	public Future<Boolean> resetAsync() {
+		Future<Boolean> futureTask = executor.submit(new _resetTask<T>(_implInstance));
+		return futureTask;
 	}
 
-	/**
-	 * Task to asynchronously call to reset iterator back to initial state. Initial
-	 * state places the iterator prior to the the first item in the collection and
-	 * refreshes the batch
-	 * 
-	 * @return true on completion
-	 */
-	private boolean _resetTask() {
-		_skipHandler = new SkipTokenHandler();
-		_currentIndex = -1;
-		_currentBatch = null;
+}
+
+/**
+ * Task to asynchronously check if there is any more data to iterate over
+ * @param <T>
+ * 
+ * @return true if there is otherwise false
+ */
+class _hasNextTask<T> implements Callable<Boolean> {
+	private PagedIteratorBase<T> _iterator;
+	public _hasNextTask(PagedIteratorBase<T> iterator) {
+		_iterator = iterator;
+	}
+	@Override
+	public Boolean call() throws Exception {
+		if ((_iterator._currentBatch.size() != 0) && _iterator._currentIndex + 1 < _iterator._currentBatch.size()) {
+			return true;
+		}
+		if (_iterator._skipHandler.getAtLeastOneCallMade() && !_iterator._skipHandler.isMoreData()) {
+			return false;
+		}
 		return true;
 	}
+}
 
+/**
+ * Task to asynchronously move the iterator to the next item in the collection
+ * @param <T>
+ * 
+ * @return true on iterator successfully moving, false if out of data
+ * @throws ExecutionException 
+ * @throws InterruptedException 
+ */
+class _moveNextTask<T> implements Callable<Boolean> {
+	private PagedIteratorBase<T> _iterator;
+	public _moveNextTask(PagedIteratorBase<T> iterator) {
+		_iterator = iterator;
+	}
+	
+	@Override
+	public Boolean call() throws Exception {
+		// move iterator
+		_iterator._currentIndex++;
+
+		// If we have enough data return true
+		if ((_iterator._currentBatch.size() != 0) && (_iterator._currentIndex < _iterator._currentBatch.size())) {
+			return true;
+		}
+
+		if (_iterator._skipHandler.getAtLeastOneCallMade() && !_iterator._skipHandler.isMoreData()) {
+			return false;
+		}
+
+		Future<Boolean> asyncGetData = _iterator.getNextBatchFromServerAsync(_iterator._skipHandler);
+		try {
+			asyncGetData.get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return false;
+		} 
+
+		if ((_iterator._currentBatch.size() != 0)) {
+			_iterator._currentIndex = 0;
+			return true;
+		}
+		
+		return false;
+	}
+
+	
+}
+
+/**
+ * Task to asynchronously call to reset iterator back to initial state. Initial
+ * state places the iterator prior to the the first item in the collection and
+ * refreshes the batch
+ * @param <T>
+ * 
+ * @return true on completion
+ */
+class _resetTask<T> implements Callable<Boolean> {
+	private PagedIteratorBase<T> _iterator;
+	public _resetTask(PagedIteratorBase<T> iterator) {
+		_iterator = iterator;
+	}
+	
+	@Override
+	public Boolean call() throws Exception {	
+		_iterator._skipHandler = new SkipTokenHandler();
+		_iterator._currentIndex = -1;
+		_iterator._currentBatch = new ArrayList<Object>();
+		return true;
+	}
 }
 
 /**

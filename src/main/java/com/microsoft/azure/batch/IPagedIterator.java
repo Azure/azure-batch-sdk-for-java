@@ -7,7 +7,7 @@
 package com.microsoft.azure.batch;
 
 import java.util.Iterator;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 /**
  * An iterator which exposes an asynchronous mechanism for iteration.
@@ -27,19 +27,19 @@ public interface IPagedIterator<T> extends Iterator<T>{
 	 * 
 	 * @return A java.util.concurrent.CompletableFuture object that represents the asynchronous operation.
 	 */
-	CompletableFuture<Boolean> hasNextAsync();
+	Future<Boolean> hasNextAsync();
 	
 	/**
 	 * Begins an asynchronous call to advance the iterator to the next element of the collection.
 	 * @return A java.util.concurrent.CompletableFuture object that represents the asynchronous operation.
 	 */
-	CompletableFuture<Boolean> moveNextAsync();
+	Future<Boolean> moveNextAsync();
 	
 	/**
 	 * Begins an asynchronous call to set the iterator to its initial position, which is prior to the first element.
 	 * 
 	 * @return A java.util.concurrent.CompletableFuture object that represents the asynchronous operation.
 	 */
-	CompletableFuture<Boolean> resetAsync();
+	Future<Boolean> resetAsync();
 	
 }

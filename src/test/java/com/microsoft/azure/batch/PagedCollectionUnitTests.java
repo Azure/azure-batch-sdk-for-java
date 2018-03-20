@@ -8,33 +8,27 @@ package com.microsoft.azure.batch;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import junit.framework.Assert;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 public class PagedCollectionUnitTests {
-
+	
+	
 	@Test(expected = NullPointerException.class)
 	public void ifIterableIsNull_ThenForEachAsyncThrowsArgumentNullException() throws Throwable {
 		IPagedIterable<Character> iterable = null;
-		CompletableFuture<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, s -> {
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			return true;
-		});
+		Future<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, new sleepOneSecond<Character>());
 		try {
 			future.get();
 		} catch (InterruptedException e) {
@@ -48,7 +42,7 @@ public class PagedCollectionUnitTests {
 	public void ifFuncIsNull_ThenForEachAsyncThrowsArgumentNullException() throws Throwable {
 		IPagedIterable<Character> iterable = new PagedAlphabet();
 		Function<Character, Object> func = null;
-		CompletableFuture<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, func);
+		Future<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, func);
 		try {
 			future.get();
 		} catch (InterruptedException e) {
@@ -62,10 +56,8 @@ public class PagedCollectionUnitTests {
 	public void forEachAsyncVisitsEveryMember() throws InterruptedException, ExecutionException {
 		List<Character> visited = new ArrayList<Character>();
 		IPagedIterable<Character> iterable = new PagedAlphabet();
-		PagedIterableExtensions.forEachAsync(iterable, s -> {
-			visited.add(s);
-			return true;
-		}).get();
+		Future<Boolean> futureTask = PagedIterableExtensions.forEachAsync(iterable, new addToList<Character>(visited));
+		futureTask.get();
 		assertEquals(26, visited.size());
 		assertEquals('A', visited.get(0).charValue());
 		assertEquals('Z', visited.get(visited.size() - 1).charValue());
@@ -74,7 +66,7 @@ public class PagedCollectionUnitTests {
 	@Test(expected = NullPointerException.class)
 	public void ifIterableIsNull_ThenToListAsyncThrowsArgumentException() throws Throwable {
 		IPagedIterable<Character> iterable = null;
-		CompletableFuture<List<Character>> future = PagedIterableExtensions.toListAsync(iterable);
+		Future<List<Character>> future = PagedIterableExtensions.toListAsync(iterable);
 		try {
 			future.get();
 		} catch (InterruptedException e) {
@@ -103,7 +95,7 @@ public class PagedCollectionUnitTests {
 	@Test(expected = CancellationException.class)
 	public void toListSupportsCancellation() throws InterruptedException, ExecutionException {
 		IPagedIterable<Character> iterable = new PagedAlphabet(4,10);
-		CompletableFuture<List<Character>> list = PagedIterableExtensions.toListAsync(iterable);	
+		Future<List<Character>> list = PagedIterableExtensions.toListAsync(iterable);	
 		list.cancel(true);
 		list.get();
 	}
@@ -111,22 +103,36 @@ public class PagedCollectionUnitTests {
 	@Test(expected = CancellationException.class)
 	public void forEachAsyncSupportsCancellation() throws InterruptedException, ExecutionException {
 		IPagedIterable<Character> iterable = new PagedAlphabet(4,10);
-		CompletableFuture<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, s -> {
-			try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return true;
-		});	
+		Future<Boolean> future = PagedIterableExtensions.forEachAsync(iterable, new sleepOneSecond<Character>());
 		future.cancel(true);
 		future.get();
 	}
-
 }
 
-class AlphabetFactory<T> implements IIteratorFactory<T> {
+class sleepOneSecond<T> implements Function<T,Boolean>{
+	public Boolean apply(T arg0) {
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
+
+class addToList<T> implements Function<T, Boolean> {
+	private List<T> _list;
+	public addToList(List<T> list) {
+		_list = list;
+	}
+	@Override
+	public Boolean apply(T item) {
+		_list.add(item);
+		return true;
+	}
+}
+
+class AlphabetFactory implements IIteratorFactory<Character> {
 	final int _pageSize;
 	final int _stopAfter;
 
@@ -136,8 +142,9 @@ class AlphabetFactory<T> implements IIteratorFactory<T> {
 	}
 
 	@Override
-	public IPagedIterator<T> newIteratorFactory() {
-		return (IPagedIterator<T>) new PagedAlphabetEnumerator(_pageSize, _stopAfter);
+	public IPagedIterator<Character> newIteratorFactory() {
+		IPagedIterator<Character> iterator = new PagedAlphabetEnumerator(_pageSize, _stopAfter);
+		return iterator;
 	}
 }
 
@@ -151,13 +158,14 @@ class PagedAlphabet extends PagedIterable<Character> {
 	}
 
 	public PagedAlphabet(int pageSize, int stopAfter) {
-		super(new AlphabetFactory<Character>(pageSize, stopAfter));
+		super(new AlphabetFactory(pageSize, stopAfter));
 	}
 }
 
 class PagedAlphabetEnumerator extends PagedIteratorBase<Character> {
-	final int _pageSize;
-	final int _last;
+	private static final ExecutorService executor = Executors.newCachedThreadPool();
+	private final int _pageSize;
+	private final int _last;
 
 	public PagedAlphabetEnumerator(int pageSize, int stopAfter) {
 		_pageSize = pageSize;
@@ -166,36 +174,50 @@ class PagedAlphabetEnumerator extends PagedIteratorBase<Character> {
 
 	@Override
 	public Character current() {
-		return (Character) (_currentBatch[_currentIndex]);
+		return (Character) (_currentBatch.get(_currentIndex));
 	}
 
 	@Override
-	protected CompletableFuture getNextBatchFromServerAsync(SkipTokenHandler skipHandler) {
-		return CompletableFuture.supplyAsync(() -> _getNextBatchFromServerAsync(skipHandler));
+	protected Future<Boolean> getNextBatchFromServerAsync(SkipTokenHandler skipHandler) {
+		Future<Boolean> futureTask = executor.submit(new _getNextBatchFromServerAsync(skipHandler, _pageSize, _last, _currentBatch));
+		return futureTask;
+	}
+}
+
+class _getNextBatchFromServerAsync implements Callable<Boolean>{
+	private SkipTokenHandler _skipHandler;
+	private int _pageSize;
+	private int _last;
+	private List<Object> _currentBatch;
+	public _getNextBatchFromServerAsync(SkipTokenHandler skipHandler, int pageSize, int last, List<Object> currentBatch) {
+		_skipHandler = skipHandler;
+		_pageSize = pageSize;
+		_last = last;
+		_currentBatch = currentBatch;
 	}
 
-	Boolean _getNextBatchFromServerAsync(SkipTokenHandler skipHandler) {
+	@Override
+	public Boolean call() throws Exception {
 		ArrayList<Character> chars = new ArrayList<Character>();
-		if (!skipHandler.getAtLeastOneCallMade()) {
+		if (!_skipHandler.getAtLeastOneCallMade()) {
 			for (int i = 0; i < _pageSize && (('A' + i) <= _last); i++) {
 				chars.add((char) ('A' + i));
 			}
 		} else {
-			char currChar = skipHandler.getSkipToken().charAt(0);
+			char currChar = _skipHandler.getSkipToken().charAt(0);
 			for (int i = 0; i < _pageSize && (((currChar + 1) + i) <= _last); i++) {
 				chars.add((char) ((currChar + 1) + i));
 			}
 		}
-
-		_currentBatch = chars.toArray();
-		skipHandler.setAtLeastOneCallMade(true);
+		_currentBatch.clear();
+		Collections.addAll(_currentBatch, chars.toArray());
+		_skipHandler.setAtLeastOneCallMade(true);
 		if (chars.size() > 0 && chars.get(chars.size() - 1) < _last) {
-			skipHandler.setSkipToken("" + chars.get(chars.size() - 1));
+			_skipHandler.setSkipToken("" + chars.get(chars.size() - 1));
 		} else {
-			skipHandler.setSkipToken(null);
+			_skipHandler.setSkipToken(null);
 		}
 
 		return true;
 	}
-
 }
