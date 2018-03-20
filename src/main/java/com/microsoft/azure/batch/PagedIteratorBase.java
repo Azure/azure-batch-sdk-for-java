@@ -21,7 +21,7 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 	protected List<Object> _currentBatch;
 	protected SkipTokenHandler _skipHandler;
 	private final ExecutorService executor = Executors.newCachedThreadPool();
-
+	
 	PagedIteratorBase() {
 		_implInstance = this;
 		_implInstance.reset();
@@ -77,8 +77,6 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 		return futureTask;
 	}
 
-
-
 	/**
 	 * Synchronously reset the iterator. Initial state places the iterator prior to
 	 * the the first item in the collection and refreshes the batch
@@ -100,6 +98,10 @@ abstract class PagedIteratorBase<T> implements IPagedIterator<T> {
 		return futureTask;
 	}
 
+	// Iterator
+	public void remove() {
+		throw new UnsupportedOperationException();
+	}
 }
 
 /**
