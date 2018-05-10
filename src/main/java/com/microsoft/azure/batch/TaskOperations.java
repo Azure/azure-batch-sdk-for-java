@@ -136,37 +136,46 @@ public class TaskOperations implements IInheritedBehaviors {
                     break;
                 }
             }
+            Queue<List<TaskAddParameter>> pendingRequests = new LinkedList<>();
+            pendingRequests.add(taskList);
+            while(pendingRequests.size() > 0) {
+                List<TaskAddParameter> requestList = pendingRequests.remove();
+                if (requestList.size() > 0) {
+                    // The option should be different to every server calls (for example, client-request-id)
+                    TaskAddCollectionOptions options = new TaskAddCollectionOptions();
+                    this.bhMgr.applyRequestBehaviors(options);
 
-            if (taskList.size() > 0) {
-                // The option should be different to every server calls (for example, client-request-id)
-                TaskAddCollectionOptions options = new TaskAddCollectionOptions();
-                this.bhMgr.applyRequestBehaviors(options);
-
-                try {
-                    TaskAddCollectionResult response = this.client.protocolLayer().tasks().addCollection(this.jobId, taskList, options);
-
-                    if (response != null && response.value() != null) {
-                        for (TaskAddResult result : response.value()) {
-                            if (result.error() != null) {
-                                if (result.status() == TaskAddStatus.SERVER_ERROR) {
-                                    // Server error will be retried
-                                    for (TaskAddParameter addParameter : taskList) {
-                                        if (addParameter.id().equals(result.taskId())) {
-                                            pendingList.add(addParameter);
-                                            break;
+                    try {
+                        TaskAddCollectionResult response = this.client.protocolLayer().tasks().addCollection(this.jobId, requestList, options);
+                        if (response != null && response.value() != null) {
+                            for (TaskAddResult result : response.value()) {
+                                if (result.error() != null) {
+                                    if (result.status() == TaskAddStatus.SERVER_ERROR) {
+                                        // Server error will be retried
+                                        for (TaskAddParameter addParameter : requestList) {
+                                            if (addParameter.id().equals(result.taskId())) {
+                                                pendingList.add(addParameter);
+                                                break;
+                                            }
                                         }
+                                    } else if (result.status() == TaskAddStatus.CLIENT_ERROR && !result.error().code().equals(BatchErrorCodeStrings.TaskExists)) {
+                                        // Client error will be recorded
+                                        failures.add(result);
                                     }
-                                } else if (result.status() == TaskAddStatus.CLIENT_ERROR && !result.error().code().equals(BatchErrorCodeStrings.TaskExists)) {
-                                    // Client error will be recorded
-                                    failures.add(result);
                                 }
                             }
                         }
+                    } catch (BatchErrorException e) {
+                        if (e.body().code().equals("RequestBodyTooLarge") && requestList.size() > 1) {
+                            int midpoint = requestList.size()/2;
+                            pendingRequests.add(requestList.subList(0, midpoint));
+                            pendingRequests.add(requestList.subList(midpoint, (requestList.size()-midpoint)));
+                        } else {
+                        // Any exception will stop further call
+                        exception = e;
+                        pendingList.addAll(taskList);
+                        }
                     }
-                } catch (BatchErrorException e) {
-                    // Any exception will stop further call
-                    exception = e;
-                    pendingList.addAll(taskList);
                 }
             }
 
