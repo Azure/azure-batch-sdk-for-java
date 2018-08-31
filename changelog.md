@@ -2,7 +2,7 @@
 
 ## Changes in 4.0.1
 ### Fixes
-  - Fix invalid signing of 4.0.0 Java SDK
+  - Fix missing signing of 4.0.0 Java SDK binary
 
 ## Changes in 4.0.0
 ### Features
