@@ -77,7 +77,6 @@ public class BatchClient {
      * Creates an instance of {@link BatchClient} associated with the specified credentials.
      *
      * @param credentials A {@link BatchCredentials} object specifying the Batch account credentials.
-     * @param batchUrl A String specifying the Batch account URL.
      * @return The new {@link BatchClient} instance.
      */
     public static BatchClient open(BatchCredentials credentials) {

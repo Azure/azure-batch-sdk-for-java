@@ -295,6 +295,8 @@ public interface Files {
     /**
      * Returns the content of the specified task file.
      *
+     * @param jobId
+     *            The ID of the job that contains the task.
      * @param taskId
      *            The ID of the task whose file you want to retrieve.
      * @param filePath
@@ -777,6 +779,8 @@ public interface Files {
     /**
      * Returns the content of the specified compute node file.
      *
+     * @param jobId
+     *            The ID of the job that contains the task.
      * @param nodeId
      *            The ID of the compute node that contains the file.
      * @param filePath
