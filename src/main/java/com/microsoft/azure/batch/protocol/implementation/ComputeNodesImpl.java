@@ -255,17 +255,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.addUser(poolId, nodeId, user, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders> clientResponse = addUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders> clientResponse = addUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -371,17 +371,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.addUser(poolId, nodeId, user, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders> clientResponse = addUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders> clientResponse = addUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeAddUserHeaders> addUserDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -477,17 +477,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.deleteUser(poolId, nodeId, userName, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders> clientResponse = deleteUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders> clientResponse = deleteUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -592,17 +592,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.deleteUser(poolId, nodeId, userName, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders> clientResponse = deleteUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders> clientResponse = deleteUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeDeleteUserHeaders> deleteUserDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -706,17 +706,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.updateUser(poolId, nodeId, userName, nodeUpdateUserParameter, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders> clientResponse = updateUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders> clientResponse = updateUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -829,17 +829,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.updateUser(poolId, nodeId, userName, nodeUpdateUserParameter, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders> clientResponse = updateUserDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders> clientResponse = updateUserDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeUpdateUserHeaders> updateUserDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -926,17 +926,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.get(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), select, timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders> clientResponse = getDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders> clientResponse = getDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1035,17 +1035,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.get(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), select, timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders> clientResponse = getDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders> clientResponse = getDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<ComputeNode, ComputeNodeGetHeaders> getDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -1137,17 +1137,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.reboot(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeRebootParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders> clientResponse = rebootDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders> clientResponse = rebootDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1254,17 +1254,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.reboot(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeRebootParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders> clientResponse = rebootDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders> clientResponse = rebootDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeRebootHeaders> rebootDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -1356,17 +1356,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.reimage(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeReimageParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders> clientResponse = reimageDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders> clientResponse = reimageDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1473,17 +1473,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.reimage(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeReimageParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders> clientResponse = reimageDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders> clientResponse = reimageDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeReimageHeaders> reimageDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -1575,17 +1575,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.disableScheduling(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeDisableSchedulingParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders> clientResponse = disableSchedulingDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders> clientResponse = disableSchedulingDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1692,17 +1692,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.disableScheduling(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, nodeDisableSchedulingParameter, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders> clientResponse = disableSchedulingDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders> clientResponse = disableSchedulingDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeDisableSchedulingHeaders> disableSchedulingDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -1791,17 +1791,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.enableScheduling(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders> clientResponse = enableSchedulingDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders> clientResponse = enableSchedulingDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1899,17 +1899,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.enableScheduling(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders> clientResponse = enableSchedulingDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders> clientResponse = enableSchedulingDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<Void, ComputeNodeEnableSchedulingHeaders> enableSchedulingDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -1999,17 +1999,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.getRemoteLoginSettings(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders> clientResponse = getRemoteLoginSettingsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders> clientResponse = getRemoteLoginSettingsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -2108,17 +2108,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.getRemoteLoginSettings(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders> clientResponse = getRemoteLoginSettingsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders> clientResponse = getRemoteLoginSettingsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<ComputeNodeGetRemoteLoginSettingsResult, ComputeNodeGetRemoteLoginSettingsHeaders> getRemoteLoginSettingsDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -2127,22 +2127,21 @@ public class ComputeNodesImpl implements ComputeNodes {
                 .registerError(BatchErrorException.class)
                 .buildWithHeaders(response, ComputeNodeGetRemoteLoginSettingsHeaders.class);
     }
-    
-    
+
+
 
     //CUSTOM METHOD
     /**
      * Gets the Remote Desktop Protocol file for the specified compute node.
      * Before you can access a node by using the RDP file, you must create a user account on the node. This API can only be invoked on pools created with a cloud service configuration. For pools created with a virtual machine configuration, see the GetRemoteLoginSettings API.
      *
-      * @param poolId The ID of the pool that contains the compute node.
-      * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
+     * @param poolId The ID of the pool that contains the compute node.
+     * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
      * @param outputStream The OutputStream object which data will be written to if successful.
-      * @throws IllegalArgumentException thrown if parameters fail the validation
-      * @throws BatchErrorException thrown if the request is rejected by server
-      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the InputStream object if successful.
-      */
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws BatchErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
     public void getRemoteDesktop(String poolId, String nodeId, final OutputStream outputStream) {
         getRemoteDesktopAsync(poolId, nodeId).doOnNext(
                 new Action1<InputStream>() {
@@ -2227,32 +2226,32 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.getRemoteDesktop(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders> clientResponse = getRemoteDesktopDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders> clientResponse = getRemoteDesktopDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
-    
+
     // CUSTOM METHOD
     /**
      * Gets the Remote Desktop Protocol file for the specified compute node.
      * Before you can access a node by using the RDP file, you must create a user account on the node. This API can only be invoked on pools created with a cloud service configuration. For pools created with a virtual machine configuration, see the GetRemoteLoginSettings API.
      *
-      * @param poolId The ID of the pool that contains the compute node.
-      * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
-      * @param computeNodeGetRemoteDesktopOptions Additional parameters for the operation
-      * @param outputStream The OutputStream object which data will be written to if successful.
-      * @throws IllegalArgumentException thrown if parameters fail the validation
-      * @throws BatchErrorException thrown if the request is rejected by server
-      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-      */
+     * @param poolId The ID of the pool that contains the compute node.
+     * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
+     * @param computeNodeGetRemoteDesktopOptions Additional parameters for the operation
+     * @param outputStream The OutputStream object which data will be written to if successful.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws BatchErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
     public void getRemoteDesktop(String poolId, String nodeId, ComputeNodeGetRemoteDesktopOptions computeNodeGetRemoteDesktopOptions, final OutputStream outputStream) {
         getRemoteDesktopAsync(poolId, nodeId, computeNodeGetRemoteDesktopOptions).doOnNext(
                 new Action1<InputStream>() {
@@ -2266,12 +2265,12 @@ public class ComputeNodesImpl implements ComputeNodes {
                             }
                             outputStream.flush();
                         } catch (IOException e) {
-                           throw Exceptions.propagate(e);
+                            throw Exceptions.propagate(e);
                         }
                     }
                 }).toBlocking().single();
     }
-    
+
     /**
      * Gets the Remote Desktop Protocol file for the specified compute node.
      * Before you can access a node by using the RDP file, you must create a user account on the node. This API can only be invoked on pools created with a cloud service configuration. For pools created with a virtual machine configuration, see the GetRemoteLoginSettings API.
@@ -2352,17 +2351,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.getRemoteDesktop(poolId, nodeId, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders> clientResponse = getRemoteDesktopDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders> clientResponse = getRemoteDesktopDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<InputStream, ComputeNodeGetRemoteDesktopHeaders> getRemoteDesktopDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -2460,17 +2459,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.uploadBatchServiceLogs(poolId, nodeId, uploadBatchServiceLogsConfiguration, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders> clientResponse = uploadBatchServiceLogsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders> clientResponse = uploadBatchServiceLogsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -2577,17 +2576,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.uploadBatchServiceLogs(poolId, nodeId, uploadBatchServiceLogsConfiguration, this.client.apiVersion(), this.client.acceptLanguage(), timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders> clientResponse = uploadBatchServiceLogsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders> clientResponse = uploadBatchServiceLogsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<UploadBatchServiceLogsResult, ComputeNodeUploadBatchServiceLogsHeaders> uploadBatchServiceLogsDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -2626,14 +2625,14 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public ServiceFuture<List<ComputeNode>> listAsync(final String poolId, final ListOperationCallback<ComputeNode> serviceCallback) {
         return AzureServiceFuture.fromHeaderPageResponse(
-            listSinglePageAsync(poolId),
-            new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink, null);
-                }
-            },
-            serviceCallback);
+                listSinglePageAsync(poolId),
+                new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
+                        return listNextSinglePageAsync(nextPageLink, null);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -2645,12 +2644,12 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<Page<ComputeNode>> listAsync(final String poolId) {
         return listWithServiceResponseAsync(poolId)
-            .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
-                @Override
-                public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
-                    return response.body();
-                }
-            });
+                .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
+                    @Override
+                    public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -2662,16 +2661,16 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> listWithServiceResponseAsync(final String poolId) {
         return listSinglePageAsync(poolId)
-            .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
+                .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, null));
                     }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, null));
-                }
-            });
+                });
     }
 
     /**
@@ -2705,17 +2704,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.list(poolId, this.client.apiVersion(), this.client.acceptLanguage(), filter, select, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listDelegate(response);
-                        return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listDelegate(response);
+                            return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -2756,21 +2755,21 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public ServiceFuture<List<ComputeNode>> listAsync(final String poolId, final ComputeNodeListOptions computeNodeListOptions, final ListOperationCallback<ComputeNode> serviceCallback) {
         return AzureServiceFuture.fromHeaderPageResponse(
-            listSinglePageAsync(poolId, computeNodeListOptions),
-            new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
-                    ComputeNodeListNextOptions computeNodeListNextOptions = null;
-                    if (computeNodeListOptions != null) {
-                        computeNodeListNextOptions = new ComputeNodeListNextOptions();
-                        computeNodeListNextOptions.withClientRequestId(computeNodeListOptions.clientRequestId());
-                        computeNodeListNextOptions.withReturnClientRequestId(computeNodeListOptions.returnClientRequestId());
-                        computeNodeListNextOptions.withOcpDate(computeNodeListOptions.ocpDate());
+                listSinglePageAsync(poolId, computeNodeListOptions),
+                new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
+                        ComputeNodeListNextOptions computeNodeListNextOptions = null;
+                        if (computeNodeListOptions != null) {
+                            computeNodeListNextOptions = new ComputeNodeListNextOptions();
+                            computeNodeListNextOptions.withClientRequestId(computeNodeListOptions.clientRequestId());
+                            computeNodeListNextOptions.withReturnClientRequestId(computeNodeListOptions.returnClientRequestId());
+                            computeNodeListNextOptions.withOcpDate(computeNodeListOptions.ocpDate());
+                        }
+                        return listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions);
                     }
-                    return listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions);
-                }
-            },
-            serviceCallback);
+                },
+                serviceCallback);
     }
 
     /**
@@ -2783,12 +2782,12 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<Page<ComputeNode>> listAsync(final String poolId, final ComputeNodeListOptions computeNodeListOptions) {
         return listWithServiceResponseAsync(poolId, computeNodeListOptions)
-            .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
-                @Override
-                public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
-                    return response.body();
-                }
-            });
+                .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
+                    @Override
+                    public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -2801,23 +2800,23 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> listWithServiceResponseAsync(final String poolId, final ComputeNodeListOptions computeNodeListOptions) {
         return listSinglePageAsync(poolId, computeNodeListOptions)
-            .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
+                .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        ComputeNodeListNextOptions computeNodeListNextOptions = null;
+                        if (computeNodeListOptions != null) {
+                            computeNodeListNextOptions = new ComputeNodeListNextOptions();
+                            computeNodeListNextOptions.withClientRequestId(computeNodeListOptions.clientRequestId());
+                            computeNodeListNextOptions.withReturnClientRequestId(computeNodeListOptions.returnClientRequestId());
+                            computeNodeListNextOptions.withOcpDate(computeNodeListOptions.ocpDate());
+                        }
+                        return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, computeNodeListNextOptions));
                     }
-                    ComputeNodeListNextOptions computeNodeListNextOptions = null;
-                    if (computeNodeListOptions != null) {
-                        computeNodeListNextOptions = new ComputeNodeListNextOptions();
-                        computeNodeListNextOptions.withClientRequestId(computeNodeListOptions.clientRequestId());
-                        computeNodeListNextOptions.withReturnClientRequestId(computeNodeListOptions.returnClientRequestId());
-                        computeNodeListNextOptions.withOcpDate(computeNodeListOptions.ocpDate());
-                    }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, computeNodeListNextOptions));
-                }
-            });
+                });
     }
 
     /**
@@ -2873,17 +2872,17 @@ public class ComputeNodesImpl implements ComputeNodes {
             ocpDateConverted = new DateTimeRfc1123(ocpDate);
         }
         return service.list(poolId, this.client.apiVersion(), this.client.acceptLanguage(), filter, select, maxResults, timeout, clientRequestId, returnClientRequestId, ocpDateConverted, parameterizedHost, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listDelegate(response);
-                        return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listDelegate(response);
+                            return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> listDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {
@@ -2923,14 +2922,14 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public ServiceFuture<List<ComputeNode>> listNextAsync(final String nextPageLink, final ServiceFuture<List<ComputeNode>> serviceFuture, final ListOperationCallback<ComputeNode> serviceCallback) {
         return AzureServiceFuture.fromHeaderPageResponse(
-            listNextSinglePageAsync(nextPageLink),
-            new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink, null);
-                }
-            },
-            serviceCallback);
+                listNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
+                        return listNextSinglePageAsync(nextPageLink, null);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -2942,12 +2941,12 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<Page<ComputeNode>> listNextAsync(final String nextPageLink) {
         return listNextWithServiceResponseAsync(nextPageLink)
-            .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
-                @Override
-                public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
-                    return response.body();
-                }
-            });
+                .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
+                    @Override
+                    public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -2959,16 +2958,16 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> listNextWithServiceResponseAsync(final String nextPageLink) {
         return listNextSinglePageAsync(nextPageLink)
-            .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
+                .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, null));
                     }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, null));
-                }
-            });
+                });
     }
 
     /**
@@ -2992,17 +2991,17 @@ public class ComputeNodesImpl implements ComputeNodes {
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listNext(nextUrl, this.client.acceptLanguage(), clientRequestId, returnClientRequestId, ocpDateConverted, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listNextDelegate(response);
+                            return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3037,14 +3036,14 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public ServiceFuture<List<ComputeNode>> listNextAsync(final String nextPageLink, final ComputeNodeListNextOptions computeNodeListNextOptions, final ServiceFuture<List<ComputeNode>> serviceFuture, final ListOperationCallback<ComputeNode> serviceCallback) {
         return AzureServiceFuture.fromHeaderPageResponse(
-            listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions),
-            new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
-                    return listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions);
-                }
-            },
-            serviceCallback);
+                listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions),
+                new Func1<String, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(String nextPageLink) {
+                        return listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3057,12 +3056,12 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<Page<ComputeNode>> listNextAsync(final String nextPageLink, final ComputeNodeListNextOptions computeNodeListNextOptions) {
         return listNextWithServiceResponseAsync(nextPageLink, computeNodeListNextOptions)
-            .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
-                @Override
-                public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
-                    return response.body();
-                }
-            });
+                .map(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Page<ComputeNode>>() {
+                    @Override
+                    public Page<ComputeNode> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3075,16 +3074,16 @@ public class ComputeNodesImpl implements ComputeNodes {
      */
     public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> listNextWithServiceResponseAsync(final String nextPageLink, final ComputeNodeListNextOptions computeNodeListNextOptions) {
         return listNextSinglePageAsync(nextPageLink, computeNodeListNextOptions)
-            .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
-                    String nextPageLink = page.body().nextPageLink();
-                    if (nextPageLink == null) {
-                        return Observable.just(page);
+                .concatMap(new Func1<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, computeNodeListNextOptions));
                     }
-                    return Observable.just(page).concatWith(listNextWithServiceResponseAsync(nextPageLink, computeNodeListNextOptions));
-                }
-            });
+                });
     }
 
     /**
@@ -3118,17 +3117,17 @@ public class ComputeNodesImpl implements ComputeNodes {
         }
         String nextUrl = String.format("%s", nextPageLink);
         return service.listNext(nextUrl, this.client.acceptLanguage(), clientRequestId, returnClientRequestId, ocpDateConverted, this.client.userAgent())
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
-                @Override
-                public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listNextDelegate(response);
-                        return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>>>() {
+                    @Override
+                    public Observable<ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> result = listNextDelegate(response);
+                            return Observable.just(new ServiceResponseWithHeaders<Page<ComputeNode>, ComputeNodeListHeaders>(result.body(), result.headers(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponseWithHeaders<PageImpl<ComputeNode>, ComputeNodeListHeaders> listNextDelegate(Response<ResponseBody> response) throws BatchErrorException, IOException, IllegalArgumentException {

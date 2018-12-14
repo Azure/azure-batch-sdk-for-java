@@ -158,7 +158,7 @@ public interface Files {
      * @return the InputStream object if successful.
      */
     InputStream getFromTask(String jobId, String taskId, String filePath);
-    
+
     /**
      * Returns the content of the specified task file.
      *  
@@ -218,7 +218,7 @@ public interface Files {
      * @return the InputStream object if successful.
      */
     InputStream getFromTask(String jobId, String taskId, String filePath, FileGetFromTaskOptions fileGetFromTaskOptions);
-    
+
     /**
      * Returns the content of the specified task file.
      *
@@ -462,7 +462,7 @@ public interface Files {
      * @return the {@link ServiceResponseWithHeaders} object if successful.
      */
     Observable<ServiceResponseWithHeaders<Void, FileDeleteFromComputeNodeHeaders>> deleteFromComputeNodeWithServiceResponseAsync(String poolId, String nodeId, String filePath, Boolean recursive, FileDeleteFromComputeNodeOptions fileDeleteFromComputeNodeOptions);
-    
+
     // CUSTOM METHOD
     /**
      * Returns the content of the specified task file.
@@ -510,7 +510,7 @@ public interface Files {
      * @return the observable to the InputStream object
      */
     Observable<ServiceResponseWithHeaders<InputStream, FileGetFromComputeNodeHeaders>> getFromComputeNodeWithServiceResponseAsync(String poolId, String nodeId, String filePath);
-    
+
     // CUSTOM METHOD
     /**
      * Returns the content of the specified compute node file.
@@ -523,7 +523,7 @@ public interface Files {
      * @throws BatchErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      */
-     void getFromComputeNode(String poolId, String nodeId, String filePath, FileGetFromComputeNodeOptions fileGetFromComputeNodeOptions, OutputStream outputStream);
+    void getFromComputeNode(String poolId, String nodeId, String filePath, FileGetFromComputeNodeOptions fileGetFromComputeNodeOptions, OutputStream outputStream);
 
 
     /**

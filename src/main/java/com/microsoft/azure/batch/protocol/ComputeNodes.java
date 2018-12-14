@@ -979,19 +979,19 @@ public interface ComputeNodes {
      * @return the observable to the InputStream object
      */
     Observable<InputStream> getRemoteDesktopAsync(String poolId, String nodeId);
-    
+
     // CUSTOM METHOD
     /**
-    *
-    * @param poolId The ID of the pool that contains the compute node.
-    * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
-    * @param outputStream The OutputStream object which data will be written to if successful.
-    * @throws IllegalArgumentException thrown if parameters fail the validation
-    * @throws BatchErrorException thrown if the request is rejected by server
-    * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-    */
+     *
+     * @param poolId The ID of the pool that contains the compute node.
+     * @param nodeId The ID of the compute node for which you want to get the Remote Desktop Protocol file.
+     * @param outputStream The OutputStream object which data will be written to if successful.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws BatchErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     */
     void getRemoteDesktop(String poolId, String nodeId, OutputStream outputStream);
-    
+
     // CUSTOM METHOD
     /**
      * Gets the Remote Desktop Protocol file for the specified compute node.
