@@ -779,8 +779,8 @@ public interface Files {
     /**
      * Returns the content of the specified compute node file.
      *
-     * @param jobId
-     *            The ID of the job that contains the task.
+     * @param poolId
+     *            The ID of the pool that contains the compute node.
      * @param nodeId
      *            The ID of the compute node that contains the file.
      * @param filePath
