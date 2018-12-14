@@ -12,6 +12,7 @@
     - `ResourceFile.withUrl` creates a `ResourceFile` pointing to a single HTTP URL.
     - `ResourceFile.withStorageContainerUrl` creates a `ResourceFile` pointing to an Azure Blob Storage container.
     - `ResourceFile.withAutoStorageContainer` creates a `ResourceFile` pointing to an Azure Blob Storage container in the Batch registered auto-storage account.
+      - The `BlobPrefix` property can be used to filter downloads from a storage container to only those matching the prefix.
   - URLs provided to `ResourceFile` via the `ResourceFile.withUrl` method can now be any HTTP URL. Previously, these had to be an Azure Blob Storage URL.
 - **[Breaking]** Removed `OSDisk` property from `VirtualMachineConfiguration`. This property is no longer supported.
 - Pools which set the `DynamicVNetAssignmentScope` on `NetworkConfiguration` to be `DynamicVNetAssignmentScope.Job` can 
