@@ -17,7 +17,7 @@
 - Pools which set the `DynamicVNetAssignmentScope` on `NetworkConfiguration` to be `DynamicVNetAssignmentScope.Job` can 
   now dynamically assign a Virtual Network to each node the job's tasks run on. The specific Virtual Network to join the nodes to is specified in 
   the new `JobNetworkConfiguration` property on `CloudJob` and `JobSpecification`. 
-  - **Note**: This feature is in public preview. It is disabled for all Batch accounts except for those 
+  - Note: This feature is in public preview. It is disabled for all Batch accounts except for those which have contacted us and requested to be in the pilot.
 - The maximum lifetime of a task is now 180 days (previously it was 7).
 - Added support on Windows pools for creating users with a specific login mode (either `Batch` or `Interactive`) via `WindowsUserConfiguration.LoginMode`.
 - The default task retention time for all tasks is now 7 days, previously it was infinite.
