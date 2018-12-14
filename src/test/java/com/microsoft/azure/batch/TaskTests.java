@@ -11,12 +11,14 @@ import com.microsoft.azure.batch.interceptor.BatchClientParallelOptions;
 import com.microsoft.azure.batch.protocol.models.*;
 import com.microsoft.azure.storage.blob.CloudBlobContainer;
 import org.joda.time.DateTime;
+import org.joda.time.Period;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.*;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -26,18 +28,28 @@ public class TaskTests  extends BatchTestBase {
 
     @BeforeClass
     public static void setup() throws Exception {
+        try {
         createClient(AuthMode.SharedKey);
         String poolId = getStringWithUserNamePrefix("-testpool");
         livePool = createIfNotExistPaaSPool(poolId);
         poolId = getStringWithUserNamePrefix("-testIaaSpool");
         liveIaaSPool = createIfNotExistIaaSPool(poolId);
         Assert.assertNotNull(livePool);
+        } catch (BatchErrorException e) {
+            cleanup();
+            throw e;
+        }
     }
 
     @AfterClass
     public static void cleanup() throws Exception {
         try {
             // batchClient.poolOperations().deletePool(livePool.id());
+        } catch (Exception e) {
+            // ignore any clean up exception
+        }
+        try {
+            // batchClient.poolOperations().deletePool(liveIaasPool.id());
         } catch (Exception e) {
             // ignore any clean up exception
         }
@@ -71,7 +83,7 @@ public class TaskTests  extends BatchTestBase {
             // Associate resource file with task
             ResourceFile file = new ResourceFile();
             file.withFilePath(BLOB_FILE_NAME);
-            file.withBlobSource(sas);
+            file.withHttpUrl(sas);
             List<ResourceFile> files = new ArrayList<>();
             files.add(file);
 
@@ -85,6 +97,9 @@ public class TaskTests  extends BatchTestBase {
             CloudTask task = batchClient.taskOperations().getTask(jobId, taskId);
             Assert.assertNotNull(task);
             Assert.assertEquals(taskId, task.id());
+            
+            // Verify default retention time
+            Assert.assertEquals(Period.days(7), task.constraints().retentionTime());
 
             // UPDATE
             TaskConstraints contraint = new TaskConstraints();
@@ -122,7 +137,7 @@ public class TaskTests  extends BatchTestBase {
                 UploadBatchServiceLogsResult uploadBatchServiceLogsResult = batchClient.computeNodeOperations().uploadBatchServiceLogs(liveIaaSPool.id(), task.nodeInfo().nodeId(), outputSas, DateTime.now().minusMinutes(-10));
                 Assert.assertNotNull(uploadBatchServiceLogsResult);
                 Assert.assertTrue(uploadBatchServiceLogsResult.numberOfFilesUploaded() > 0);
-                Assert.assertTrue(uploadBatchServiceLogsResult.virtualDirectoryName().contains(liveIaaSPool.id()));
+                Assert.assertTrue(uploadBatchServiceLogsResult.virtualDirectoryName().toLowerCase().contains(liveIaaSPool.id().toLowerCase()));
             }
 
             // DELETE
@@ -310,7 +325,7 @@ public class TaskTests  extends BatchTestBase {
                 "https://noexistaccount.westus.batch.azure.com",
                 "noexistaccount",
                 System.getenv("AZURE_BATCH_ACCESS_KEY"));
-        BatchClient testBatchClient = BatchClient.open(noExistCredentials1);
+        BatchClient testBatchClient = BatchClient.open(noExistCredentials1, "https://noexistaccount.westus.batch.azure.com");
 
         String jobId = getStringWithUserNamePrefix("-testAddMultiTasksWithError-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
 
@@ -438,7 +453,7 @@ public class TaskTests  extends BatchTestBase {
         ResourceFile resourceFile;
         // If this test fails try increasing the size of the Task in case maximum size increase
         for(int i = 0; i < 10000; i++) {
-            resourceFile = new ResourceFile().withBlobSource("https://mystorageaccount.blob.core.windows.net/files/resourceFile"+i).withFilePath("resourceFile"+i);
+            resourceFile = new ResourceFile().withHttpUrl("https://mystorageaccount.blob.core.windows.net/files/resourceFile"+i).withFilePath("resourceFile"+i);
             resourceFiles.add(resourceFile);
         }
         taskToAdd.withId(taskId).withResourceFiles(resourceFiles).withCommandLine("sleep 1");
@@ -492,7 +507,7 @@ public class TaskTests  extends BatchTestBase {
 
         // Num Resource Files * Max Chunk Size should be greater than or equal to the limit which triggers the PoisonTask test to ensure we encounter the error in the initial chunk.
         for(int i = 0; i < 100; i++) {
-            resourceFile = new ResourceFile().withBlobSource("https://mystorageaccount.blob.core.windows.net/files/resourceFile"+i).withFilePath("resourceFile"+i);
+            resourceFile = new ResourceFile().withHttpUrl("https://mystorageaccount.blob.core.windows.net/files/resourceFile"+i).withFilePath("resourceFile"+i);
             resourceFiles.add(resourceFile);
         }
         // Num tasks to add
@@ -520,4 +535,5 @@ public class TaskTests  extends BatchTestBase {
             Assert.fail("Expected Success");
         }
     }
+
 }

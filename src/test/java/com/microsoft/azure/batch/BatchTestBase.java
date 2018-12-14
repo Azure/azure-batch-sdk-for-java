@@ -56,7 +56,7 @@ abstract class BatchTestBase {
                     System.getenv("AZURE_BATCH_ACCOUNT"),
                     System.getenv("AZURE_BATCH_ACCESS_KEY"));
         }
-        batchClient = BatchClient.open(credentials);
+        batchClient = BatchClient.open(credentials, System.getenv("AZURE_BATCH_ENDPOINT"));
     }
 
     static CloudPool createIfNotExistPaaSPool(String poolId) throws Exception {
@@ -73,7 +73,7 @@ abstract class BatchTestBase {
         if (!batchClient.poolOperations().existsPool(poolId)) {
             // Use PaaS VM with Windows
             CloudServiceConfiguration configuration = new CloudServiceConfiguration();
-            configuration.withOsFamily(POOL_OS_FAMILY).withTargetOSVersion(POOL_OS_VERSION);
+            configuration.withOsFamily(POOL_OS_FAMILY).withOsVersion(POOL_OS_VERSION);
 
             List<UserAccount> userList = new ArrayList<>();
             userList.add(new UserAccount().withName("test-user").withPassword("kt#_gahr!@aGERDXA").withElevationLevel(ElevationLevel.ADMIN));
@@ -172,7 +172,7 @@ abstract class BatchTestBase {
         StorageCredentials credentials = new StorageCredentialsAccountAndKey(storageAccountName, storageAccountKey);
 
         // Create storage account
-        CloudStorageAccount storageAccount = new CloudStorageAccount(credentials);
+        CloudStorageAccount storageAccount = new CloudStorageAccount(credentials, true);
 
         // Create the blob client
         CloudBlobClient blobClient =  storageAccount.createCloudBlobClient();
