@@ -47,7 +47,7 @@ abstract class BatchTestBase {
             credentials = new BatchSharedKeyCredentials(System.getenv("AZURE_BATCH_ENDPOINT"),
                     System.getenv("AZURE_BATCH_ACCOUNT"), System.getenv("AZURE_BATCH_ACCESS_KEY"));
         }
-        batchClient = BatchClient.open(credentials, System.getenv("AZURE_BATCH_ENDPOINT"));
+        batchClient = BatchClient.open(credentials);
     }
 
     static CloudPool createIfNotExistPaaSPool(String poolId) throws Exception {

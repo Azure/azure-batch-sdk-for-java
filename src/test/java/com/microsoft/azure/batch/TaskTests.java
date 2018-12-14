@@ -324,7 +324,7 @@ public class TaskTests  extends BatchTestBase {
                 "https://noexistaccount.westus.batch.azure.com",
                 "noexistaccount",
                 System.getenv("AZURE_BATCH_ACCESS_KEY"));
-        BatchClient testBatchClient = BatchClient.open(noExistCredentials1, "https://noexistaccount.westus.batch.azure.com");
+        BatchClient testBatchClient = BatchClient.open(noExistCredentials1);
 
         String jobId = getStringWithUserNamePrefix("-testAddMultiTasksWithError-" + (new Date()).toString().replace(' ', '-').replace(':', '-').replace('.', '-'));
 

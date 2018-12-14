@@ -46,7 +46,7 @@ public class BatchClient {
         return this.protocolLayer;
     }
 
-    private BatchClient(BatchCredentials credentials, String batchUrl) {
+    private BatchClient(BatchCredentials credentials) {
         RestClient restClient = new RestClient.Builder()
             .withBaseUrl(credentials.baseUrl())
             .withCredentials(credentials)
@@ -59,7 +59,7 @@ public class BatchClient {
                 }
             })
             .build();
-        this.protocolLayer = new BatchServiceClientImpl(restClient).withBatchUrl(batchUrl);
+        this.protocolLayer = new BatchServiceClientImpl(restClient).withBatchUrl(credentials.baseUrl());
         this.customBehaviors = new LinkedList<>();
         this.customBehaviors.add(new ClientRequestIdInterceptor());
         this.certificateOperations = new CertificateOperations(this, customBehaviors());
@@ -80,8 +80,8 @@ public class BatchClient {
      * @param batchUrl A String specifying the Batch account URL.
      * @return The new {@link BatchClient} instance.
      */
-    public static BatchClient open(BatchCredentials credentials, String batchUrl) {
-        return new BatchClient(credentials, batchUrl);
+    public static BatchClient open(BatchCredentials credentials) {
+        return new BatchClient(credentials);
     }
 
     /**
