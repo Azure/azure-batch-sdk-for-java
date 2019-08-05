@@ -1,4 +1,4 @@
-﻿[![Build Status](https://travis-ci.org/Azure/azure-batch-sdk-for-java.svg?style=flat-square&label=build)](https://travis-ci.org/Azure/azure-batch-sdk-for-java)
+# This repository is deprecated and the current Azure Batch Java SDK is located [here](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/batch/microsoft-azure-batch).
 
 ## Azure Batch Libraries for Java
 
