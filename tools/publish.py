@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 import sys
 import os
 import fnmatch
@@ -9,21 +10,21 @@ import re
 def main(argv):
     # validation
     if len(argv) < 4:
-        print "Usage: " + get_usage()
+        print("Usage: " + get_usage())
         exit(1)
     # figure out source dir
     folder = os.path.dirname(os.path.realpath(__file__))
     if len(argv) == 5:
         folder = argv[4]
         if not os.path.isdir(folder):
-            print "Cannot find directory " + folder
+            print("Cannot find directory " + folder)
             exit(1)
     folder = folder.strip('/')
     # make working dir
     version = argv[1]
     working = folder + "/" + version
     if os.path.exists(working):
-        print "Cowardly exiting because " + working + " already exists"
+        print("Cowardly exiting because " + working + " already exists")
         exit(1)
     os.mkdir(working)
     # copy over all jars
@@ -47,14 +48,14 @@ def main(argv):
             shutil.copyfile(i, "%s/%s-%s.pom" % (working, pkg_name, version))
         pkgs.append(pkg_name)
     # filter out packages
-    print "Publishing the following: "
+    print("Publishing the following: ")
     to_pub = []
     for pkg in pkgs:
         if re.match(argv[3], pkg) is not None:
             to_pub.append(os.path.join(working, pkg))
-            print pkg
+            print(pkg)
     if len(to_pub) == 0:
-        print "No compiled package matches the regex. Exiting."
+        print("No compiled package matches the regex. Exiting.")
         exit(1)
     for pkg in to_pub:
         cmd = "mvn gpg:sign-and-deploy-file"
@@ -68,12 +69,12 @@ def main(argv):
             os.system(cmd + " -Dfile=%s-%s.jar -Dgpg.passphrase=%s" % (pkg, version, argv[2]))
             os.system(cmd + " -Dfile=%s-%s-javadoc.jar -Dclassifier=javadoc -Dgpg.passphrase=%s" % (pkg, version, argv[2]))
             os.system(cmd + " -Dfile=%s-%s-sources.jar -Dclassifier=sources -Dgpg.passphrase=%s" % (pkg, version, argv[2]))
-    print "Finished."
+    print("Finished.")
 
 
 def mvn_package():
     cmd = "mvn package source:jar javadoc:jar"
-    print "Shell: " + cmd
+    print("Shell: " + cmd)
     os.system(cmd)
 
 
